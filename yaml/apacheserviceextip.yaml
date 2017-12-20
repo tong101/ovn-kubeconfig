@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    name: apacheexterna-ip
+    role: service
+  name: apacheexternal-ip
+spec:
+  ports:
+    - port: 8800
+      targetPort: 80
+      protocol: TCP
+      name: tcp
+    - port: 8900
+      targetPort: 90
+      protocol: UDP
+      name: udp
+  externalIPs:
+    - 80.11.12.10
+    - 80.11.12.11
+  selector:
+    name: apache
