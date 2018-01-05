@@ -1,0 +1,32 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+ name: policy1
+ namespace: ns1
+spec:
+ podSelector:
+  matchLabels:
+    name: apache
+ ingress:
+  - from:
+     - namespaceSelector:
+        matchLabels:
+         project: myproject1
+     - podSelector:
+        matchLabels:
+         role: frontend1
+    ports:
+     - protocol: TCP
+       port: 80
+     - protocol: UDP
+       port: 1234
+  - from:
+     - namespaceSelector:
+        matchLabels:
+         project: myproject2
+     - podSelector:
+        matchLabels:
+         role: frontend2
+    ports:
+     - protocol: TCP
+       port: 80

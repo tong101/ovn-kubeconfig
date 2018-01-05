@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: apachetwin
+  labels:
+    name: apache
+    role: backup
+spec:
+  containers:
+  - name: apachetwin
+    image: fedora/apache
+    ports:
+    - containerPort: 100
+      name: is-http

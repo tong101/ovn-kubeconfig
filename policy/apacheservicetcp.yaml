@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    name: apacheservicenamed
+    role: service
+  name: apacheservicenamed
+spec:
+  ports:
+    - port: 8800
+      targetPort: is-http
+      protocol: TCP
+      name: tcp
+  selector:
+    name: apache

@@ -1,0 +1,32 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+ name: test-network-policy
+ namespace: guru
+spec:
+ podSelector:
+  matchLabels:
+    name: apache
+ ingress:
+  - from:
+     - namespaceSelector:
+        matchLabels:
+         project: myproject1
+     - podSelector:
+        matchLabels:
+         role: frontend
+    ports:
+     - protocol: TCP
+       port: 6379
+     - protocol: UDP
+       port: 1234
+  - from:
+     - namespaceSelector:
+        matchLabels:
+         project: myproject2
+     - podSelector:
+        matchLabels:
+         role: backend
+    ports:
+     - protocol: TCP
+       port: 6378
